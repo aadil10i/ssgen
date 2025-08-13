@@ -3,15 +3,24 @@ import unittest
 from htmlnode import HTMLNode
 
 
-class TestTextNode(unittest.TestCase):
-    def test_repr(self):
-        node1 = HTMLNode("<p>")
-        return node1
+class TestHtmlNode(unittest.TestCase):
+    def test_props_to_html(self):
+        node1 = HTMLNode(
+            "<p>",
+            None,
+            None,
+            {
+                "href": "https://www.google.com",
+                "target": "_blank",
+            },
+        )
 
-    # def test_not_eq(self):
+        print(node1.props_to_html())
+
+    # def second_test(self):
     #     pass
 
-    # def test_eq_url_none(self):
+    # def third_test(self):
     #     pass
 
 
