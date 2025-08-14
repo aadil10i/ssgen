@@ -1,9 +1,9 @@
-from textnode import TextNode
+from htmlnode import LeafNode
 
 
 def main():
-    textnode = TextNode("anchor text", "link", "https://www.boot.dev")
-    print(textnode)
+    textnode = LeafNode("p", "hello")
+    print(textnode.to_html())
 
 
 if __name__ == "__main__":
