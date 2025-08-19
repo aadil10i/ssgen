@@ -1,3 +1,4 @@
+# regular full HTML Node with optional attributes
 class HTMLNode:
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
@@ -22,19 +23,19 @@ class HTMLNode:
     def __repr__(self):
         return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props})"
 
-
+# A HTML Node where it DOESN'T have a nested children tag
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props=None):
         super().__init__(tag, value, None, props)
 
     def to_html(self):
         if self.value is None:
-            raise ValueError
+            raise ValueError("All leaf nodes require a value")
 
         if self.tag is None:
             return self.value
 
-        props_html = self.props_to_html(self.props)
+        props_html = self.props_to_html()
         if props_html is None:
             props_html = ""
 
@@ -42,3 +43,8 @@ class LeafNode(HTMLNode):
 
     def __repr__(self):
         return f"LeafNode({self.tag}, {self.value}, {self.props})"
+    
+# A HTML Node where it HAS a nested children tag
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, props=None):
+
