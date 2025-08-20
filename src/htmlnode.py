@@ -53,9 +53,23 @@ class ParentNode(HTMLNode):
 
     def to_html(self):
         if self.tag is None:
-            raise ValueError
+            raise ValueError("Parent node requires a tag")
 
-        if self.children is None:
-            raise ValueError("Children Tag is required.")
+        if self.children is None or not self.children:
+            raise ValueError("Parent node requires children")
 
+        # Loop recursively due to possibly having multiple children node
+        # recusive to convert each into HTML string "children_html" is an accumulator
+        children_html = ""
+        for child in self.children:
+            children_html += child.to_html()
+
+        # use props_to_html helper method to convert curr props to html stirng
+        props_html = self.props_to_html()
+        if props_html is None:
+            props_html = ""
+
+        return f"<{self.tag}{props_html}>{children_html}</{self.tag}>"
+
+    def __repr__(self):
         return f"ParentNode({self.tag}, {self.children}, {self.props})"
