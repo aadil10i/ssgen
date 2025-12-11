@@ -126,3 +126,16 @@ def text_to_textnodes(text):
     nodes = split_nodes_delimiter(nodes, "_", TextType.ITALIC)
     nodes = split_nodes_delimiter(nodes, "`", TextType.CODE)
     return nodes
+
+
+# single string markdown into blocks
+def markdown_to_blocks(markdown):
+    splited_blocks = markdown.split("\n\n")
+    new_splited_blocks = []
+
+    for block in splited_blocks:
+        block.strip()
+        if block:
+            new_splited_blocks.append(block)
+
+    return new_splited_blocks
