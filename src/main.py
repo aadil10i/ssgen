@@ -131,11 +131,11 @@ def text_to_textnodes(text):
 # single string markdown into blocks
 def markdown_to_blocks(markdown):
     splited_blocks = markdown.split("\n\n")
-    new_splited_blocks = []
+    new_blocks = []
 
     for block in splited_blocks:
-        block.strip()
-        if block:
-            new_splited_blocks.append(block)
+        stripped_block = block.strip()
+        if stripped_block:
+            new_blocks.append(stripped_block)
 
-    return new_splited_blocks
+    return new_blocks
