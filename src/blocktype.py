@@ -21,13 +21,13 @@ def block_to_block_type(block: str) -> BlockType:
         return BlockType.QUOTE
 
     if False not in [
-        line.startswith("*") or line.endswith("-") for line in block.split("\n")
+        line.startswith("* ") or line.startswith("- ") for line in block.split("\n")
     ]:
         return BlockType.UNORDERED_LIST
 
     if False not in [
         line.startswith(f"{index + 1}. ")
-        for line, index in enumerate(block.split("\n"))
+        for index, line in enumerate(block.split("\n"))
     ]:
         return BlockType.ORDERED_LIST
 
