@@ -11,7 +11,7 @@ class BlockType(Enum):
 
 
 def block_to_block_type(block: str) -> BlockType:
-    if block.startswith(("#", "##", "###", "####", "#####", "######")):
+    if block.startswith(("# ", "## ", "### ", "#### ", "##### ", "###### ")):
         return BlockType.HEADING
 
     if block.startswith(("```")) and block.endswith(("```")):
@@ -26,8 +26,8 @@ def block_to_block_type(block: str) -> BlockType:
         return BlockType.UNORDERED_LIST
 
     if False not in [
-        line.startswith("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-        for line in block.split("\n")
+        line.startswith(f"{index + 1}. ")
+        for line, index in enumerate(block.split("\n"))
     ]:
         return BlockType.ORDERED_LIST
 
